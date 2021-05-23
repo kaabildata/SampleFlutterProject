@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_project/widgets/reusable_widgets.dart';
+
 import 'registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,79 +17,99 @@ class _LoginScreenState extends State<LoginScreen> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.indigo[100],
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Login with email',
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            ReusableTextfield(
-              hintText: 'email',
-              value: email,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(40, 20, 40, 30),
-              child: Material(
-                elevation: 8,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: 'Password',
-                    suffixIcon: InkWell(
-                      onTap: togglePasswordView,
-                      child: Icon(icon),
-                    ),
-                  ),
-                  obscureText: _ischeckedvisibility,
+        body: ConstrainedBox(
+          constraints: BoxConstraints(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Login with email',
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
-            ),
-            TextButton(
-              child: Text(
-                'Forgot Password?',
-                style: TextStyle(fontSize: 16, color: Colors.indigo[150]),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Material(
+                  elevation: 8,
+                  color: Colors.indigo[100],
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (value) {
+                      email = value;
+                    },
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      hintText: "Email",
+                    ),
+                  ),
+                ),
               ),
-              onPressed: () => null,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print(email);
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(fontSize: 16, color: Colors.indigo[150]),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 20, 40, 30),
+                child: Material(
+                  elevation: 8,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      hintText: 'Password',
+                      suffixIcon: InkWell(
+                        onTap: togglePasswordView,
+                        child: Icon(icon),
+                      ),
+                    ),
+                    obscureText: _ischeckedvisibility,
+                  ),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Text(
-              'Don\'t have account',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            TextButton(
+              TextButton(
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(fontSize: 16, color: Colors.indigo[150]),
+                ),
+                onPressed: () => null,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, RegistrationScreen.id);
+                  print(email);
                 },
                 child: Text(
-                  'Sign up',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.indigo[150],
-                  ),
-                )),
-          ],
+                  'Login',
+                  style: TextStyle(fontSize: 16, color: Colors.indigo[150]),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                'Don\'t have account',
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, RegistrationScreen.id);
+                  },
+                  child: Text(
+                    'Sign up',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.indigo[150],
+                    ),
+                  )),
+            ],
+          ),
         ),
       ),
     );
