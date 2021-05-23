@@ -49,11 +49,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               padding: const EdgeInsets.fromLTRB(40, 20, 40, 30),
               child: Material(
                 elevation: 8,
-                child: TextField(
+                child: TextFormField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 5),
-                    ),
+                    fillColor: Colors.white,
+                    filled: true,
                     hintText: 'Password',
                     suffixIcon: InkWell(
                       onTap: _togglePasswordView,
