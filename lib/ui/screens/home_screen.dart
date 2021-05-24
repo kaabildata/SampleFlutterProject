@@ -59,8 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: false,
         ),
         backgroundColor: Colors.indigo[100],
-        body: ConstrainedBox(
-          constraints: BoxConstraints(),
+        body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
