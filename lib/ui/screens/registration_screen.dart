@@ -40,8 +40,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(
                 height: 30,
               ),
-              GestureDetector(
-                onTap: () => {
+              FloatingActionButton(
+                onPressed: () => {
                   getImageFromGallery,
                 },
                 child: CircleAvatar(
