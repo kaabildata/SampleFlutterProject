@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:sample_project/ui/screens/home_screen.dart';
 import 'registration_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'LoginScreen';
@@ -9,9 +10,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
   bool _ischeckedvisibility = true;
   IconData icon = Icons.visibility;
   String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,6 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Material(
                   elevation: 8,
                   child: TextFormField(
+                    onChanged: (value) {
+                      password = value;
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -79,8 +85,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 30,
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(email);
+                onPressed: () async {
+                  try {
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: password);
+                    if (user != null) {
+                      Navigator.pushNamed(context, HomeScreen.id);
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
                 },
                 child: Text(
                   'Login',
